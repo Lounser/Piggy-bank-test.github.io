@@ -23,7 +23,7 @@ const leaderboardList = document.getElementById('leaderboard-list');
 const distributionChartCanvas = document.getElementById('distributionChart');
 const updateChartsButton = document.getElementById('update-charts');
 const loadingIndicator = updateChartsButton.querySelector('.loading-indicator');
-
+const UpdaterText = updateChartsButton.querySelector('.updater-text');
 // Данные
 let piggyBanks = [];
 let transactionsCharts = {};
@@ -139,9 +139,9 @@ function createPiggyBankElement(piggyBank) {
                     `).join('')}
                 </ul>
                 <div class="chart-container">
-                    <canvas data-id="${piggyBank.id}" class="transactions-chart"></canvas>
                 </div>
-            </div>
+                </div>
+                <canvas data-id="${piggyBank.id}" class="transactions-chart"></canvas>
         `;
 
     // Добавляем скролл, если транзакций больше 6
@@ -763,12 +763,13 @@ function updateCharts() {
     }
 
     loadingIndicator.style.display = 'inline'; // Показываем индикатор загрузки
-
+    UpdaterText.style.display = 'none';
     distributionChart.data.datasets[0].data = piggyBanks.map(bank => bank.current);
     distributionChart.update();
 
     setTimeout(() => {
         loadingIndicator.style.display = 'none'; // Скрываем индикатор загрузки
+        UpdaterText.style.display = 'inline';
     }, 600); // Задержка, чтобы анимация завершилась
 }
 
