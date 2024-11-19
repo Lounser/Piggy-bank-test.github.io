@@ -418,7 +418,7 @@ body.dark {
 
 #add-piggy-bank.dark,
 #filters button {
-  background-color: #444;
+  background-color: #303030;
   color: #fff;
 }
 
@@ -486,6 +486,11 @@ body.dark .piggy-bank {
   #add-piggy-bank {
     padding: 20px;
   }
+  #add-piggy-bank input,
+  #add-piggy-bank textarea {
+    padding: 5px;
+    font-size: 16px;
+  }
   .piggy-bank {
     padding: 20px;
   }
@@ -522,4 +527,126 @@ body.dark .piggy-bank {
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+}
+.update-button:hover {
+  background-color: #333;
+}
+
+footer {
+  margin-top: max(40px, env(safe-area-inset-top));
+  bottom: 0;
+  width: calc(100% - 40px);
+  max-width: 1280px;
+  background-color: #212121;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #333;
+}
+footer a {
+  color: #2196F3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+footer a:hover {
+  color: #1976D2;
+}
+
+input,
+textarea {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-color: #aaa;
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light {
+  animation: light-theme 0.3s ease-in-out forwards;
+}
+
+body.dark {
+  animation: dark-theme 0.3s ease-in-out forwards;
+}
+
+@keyframes light-theme {
+  0% {
+    background-color: #212121;
+    color: #fff;
+  }
+  100% {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+}
+@keyframes dark-theme {
+  0% {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  100% {
+    background-color: #212121;
+    color: #fff;
+  }
+}
+.piggy-bank .progress-bar {
+  height: 10px;
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.piggy-bank .progress-bar .progress-bar-fill {
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 10px;
+  transition: width 0.2s ease;
+}
+.piggy-bank .progress-bar .progress-bar-fill.filled {
+  background-color: #4CAF50;
+}
+.piggy-bank .progress-bar .progress-bar-fill.over-goal {
+  background-color: #FFC107;
+}
+.piggy-bank .progress-bar .progress-bar-fill.double-over-goal {
+  background-color: #FF5722;
+}
+.piggy-bank .progress-bar .progress-bar-fill.triple-over-goal {
+  background-color: #F44336;
+}
+.piggy-bank .progress-bar .progress-bar-fill.quadruple-over-goal {
+  background-color: #9C27B0;
+}
+
+.piggy-bank .progress-bar-fill {
+  animation: widthChange 0.3s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes widthChange {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes removePiggyBank {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) rotate(90deg);
+  }
+}
+.piggy-bank.removing {
+  animation: removePiggyBank 0.6s ease-in-out forwards;
 }/*# sourceMappingURL=style.css.map */
