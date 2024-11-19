@@ -73,7 +73,16 @@ function createPiggyBank(name, goal, start, image, description, id, goalDate) {
     clearForm();
     savePiggyBanks();
 }
-
+function showGoalDate(piggyBank) {
+    const goalDateSpan = document.querySelector(`.piggy-bank[data-id="${piggyBank.id}"] .goal-date`);
+    if (piggyBank.goalDate) {
+        const date = new Date(piggyBank.goalDate);
+        const formattedDate = date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+        goalDateSpan.textContent = `Цель до: ${formattedDate}`;
+    } else {
+        goalDateSpan.textContent = '';
+    }
+}
 // Отрисовка копилок
 function renderPiggyBanks(filteredBanks = piggyBanks) {
     piggyBanksContainer.innerHTML = '';
@@ -100,6 +109,15 @@ function attachPiggyBankListeners(piggyBankEl, piggyBank) {
         addEditDeleteListeners(piggyBankEl, piggyBank);
         piggyBankEl.dataset.hasEventListeners = true;
     }
+    // Отображаем дату цели
+    const goalDateSpan = piggyBankEl.querySelector('.goal-date');
+    if (piggyBank.goalDate) {
+        const date = new Date(piggyBank.goalDate);
+        const formattedDate = date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+        goalDateSpan.textContent = `Цель до: ${formattedDate}`;
+    } else {
+        goalDateSpan.textContent = '';
+    }
 }
 
 // Создание элемента копилки
@@ -114,6 +132,7 @@ function createPiggyBankElement(piggyBank) {
                 <div class="progress-bar-fill"></div>
                 <div class="progress-text"></div>
             </div>
+            <p class="goal-date"></p>
             <p>Текущий баланс: <span class="current-balance">${piggyBank.current}</span>₽</p>
             <p>Цель: ${piggyBank.goal}₽</p>
             <p class="description">${piggyBank.description || ''}</p>
@@ -840,6 +859,48 @@ savePiggyBankBtn.addEventListener('click', () => {
         const id = piggyBankIdInput.value;
         const goalDate = piggyBankGoalDateInput.value;
         createPiggyBank(name, goal, start, image, description, id, goalDate);
+    }
+});
+
+// Открытие изображения в полном размере
+piggyBanksContainer.addEventListener('click', (event) => {
+    const imageEl = event.target.closest('.piggy-bank-image');
+    if (imageEl) {
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.style.zIndex = '1000';
+        modal.style.transition = 'background-color 0.3s ease';
+        
+
+        const image = new Image();
+        image.src = imageEl.src;
+        image.style.maxWidth = '90%';
+        image.style.maxHeight = '90%';
+        image.style.opacity = '0';
+        image.style.transition = 'opacity 0.3s ease';
+        
+        modal.appendChild(image);
+        document.body.appendChild(modal);
+
+        setTimeout(() => modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)');
+        setTimeout(() => image.style.opacity = '1');
+
+        modal.addEventListener('click', () => {
+            modal.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+            image.style.opacity = '0';
+
+            setTimeout(() => document.body.removeChild(modal), 300);
+            document.body.removeChild(modal);
+        });
     }
 });
 
