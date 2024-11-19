@@ -169,6 +169,12 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.piggy-bank .subtract-amount {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 .piggy-bank button {
   background-color: #f3ad21;
   color: white;
@@ -479,6 +485,15 @@ body.dark .piggy-bank {
   body {
     padding: 10px;
   }
+  .add-amount-container button {
+    width: 100%;
+  }
+  .add-amount {
+    width: 95%;
+  }
+  .subtract-amount {
+    width: 95%;
+  }
   h1 {
     font-size: 2em;
     margin-bottom: 15px;
@@ -499,7 +514,11 @@ body.dark .piggy-bank {
     gap: 5px;
   }
   .actions-container button {
-    margin: 5px 0;
+    margin: 5px 5px;
+    gap: 10px;
+  }
+  .block_button {
+    gap: 10px;
   }
   #filters {
     flex-direction: column;
