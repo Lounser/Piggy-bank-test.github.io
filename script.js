@@ -135,7 +135,7 @@ function createPiggyBankElement(piggyBank) {
             <p class="goal-date"></p>
             <p>Текущий баланс: <span class="current-balance">${piggyBank.current}</span>₽</p>
             <p>Цель: ${piggyBank.goal}₽</p>
-            <p class="description">${piggyBank.description || ''}</p>
+            <p class="description">Описание: ${piggyBank.description || ''}</p>
             <div class="actions-container">
                 <button class="edit-button">Редактировать</button>
                 <button class="delete-button">Удалить</button>
