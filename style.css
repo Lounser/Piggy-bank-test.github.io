@@ -1,31 +1,36 @@
-@charset "UTF-8";
+$primary-color: #2196F3; // Синий
+$secondary-color: #1976D2; // Темно-синий
+$progress-bar-bg: #eee; // Светло-серый
+$progress-bar-fill-default: #4CAF50; // Зеленый
+$over-goal-color: #FFC107; // Желтый
+$double-over-goal-color: #FF5722; // Оранжевый
+$triple-over-goal-color: #F44336; // Красный
+$quadruple-over-goal-color: #9C27B0; // Фиолетовый
+$text-color: #333;
 
 body {
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f4f4f4;
-  color: #333;
-  min-height: 100vh; /* Занимает всю высоту окна */
-  margin: 0; /* Убираем margin по умолчанию */
-  padding: 10px; /* Уменьшаем padding */
-  box-sizing: border-box; /*  Учитываем padding в ширине элементов */
+  color: $text-color;
+  padding: 20px;
 }
 
 h1 {
-  font-size: 2em; /* Уменьшаем размер заголовка */
-  margin-bottom: 15px;
+  font-size: 3em;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .theme-switch {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.theme-switch input[type=checkbox] {
+.theme-switch input[type="checkbox"] {
   display: none;
 }
 
@@ -37,25 +42,22 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.theme-switch input[type=checkbox]:checked + label {
+.theme-switch input[type="checkbox"]:checked + label {
   background-color: #f3ad21;
 }
 
 #filters {
   display: flex;
-  flex-wrap: wrap; /* Обёртывание элементов при недостатке места */
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   gap: 10px;
 }
 
-#filters input[type=text],
+#filters input[type="text"],
 #filters select {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  flex: 1; /* Занимает доступное пространство */
-  box-sizing: border-box;
 }
 
 #filters button {
@@ -65,215 +67,201 @@ h1 {
   background-color: #f3ad21;
   color: white;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
 #add-piggy-bank {
   background-color: #fff;
   border-radius: 10px;
-  padding: 20px; /* Уменьшаем padding */
+  padding: 40px 100px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
-  width: 100%; /* Занимает всю ширину */
-  box-sizing: border-box;
-}
+  margin-bottom: 20px;
 
-#add-piggy-bank h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  text-align: center;
-}
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
 
-#add-piggy-bank input,
-#add-piggy-bank textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-#add-piggy-bank button {
-  background-color: #f3ad21;
-  color: white;
-  padding: 10px 20px; /* Кнопки меньше */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  width: 100%; /* Кнопка занимает всю ширину */
-  box-sizing: border-box;
-}
+  button {
+    background-color: #f3ad21;
+    color: white;
+    padding: 15px 70px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 
-#add-piggy-bank button:hover {
-  background-color: #eea30d;
+    &:hover {
+      background-color: darken($color: #f3ad21, $amount: 5);
+    }
+  }
 }
 
 #piggy-banks-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  width: 100%; /* Занимает всю ширину */
+  gap: 20px;
 }
 
 .piggy-bank {
   background-color: #fff;
   border-radius: 10px;
-  padding: 15px; /* Уменьшаем padding */
+  padding: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
-  width: calc(50% - 7.5px); /* Занимает половину ширины с учетом gap */
-  box-sizing: border-box;
-  min-width: 280px;
-}
 
-.piggy-bank:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
-.piggy-bank h3 {
-  font-size: 1.5em; /* Уменьшаем размер заголовка */
-  margin-bottom: 10px;
-}
+  h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
 
-.piggy-bank .piggy-bank-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
+  .piggy-bank-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
 
-.piggy-bank .progress-bar {
-  width: 100%;
-  height: 12px;
-  background-color: #eee;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  position: relative;
-  overflow: hidden;
-}
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: $progress-bar-bg;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
 
-.piggy-bank .progress-bar .progress-bar-fill {
-  height: 100%;
-  border-radius: 5px 0 0 5px;
-  width: 0%;
-  max-width: 100%;
-  transition: background-color 0.3s ease, width 0.5s ease;
-  animation: colorChange 0.3s ease-in-out;
-  animation-fill-mode: forwards;
-  animation: widthChange 0.5s ease-in-out;
-}
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 5px 0 0 5px;
+      width: 0%;
+      max-width: 100%;
+      transition: background-color 0.3s ease, width 0.5s ease;
 
+      /* Анимация для перехода цвета */
+      animation: colorChange 0.3s ease-in-out;
+      animation-fill-mode: forwards;
 
-.piggy-bank .progress-bar .progress-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  color: #fff;
-  z-index: 1;
-}
+      /* Анимация для перехода ширины */
+      animation: widthChange 0.5s ease-in-out;
+    }
 
-.piggy-bank .description {
-  margin-bottom: 10px;
-}
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+      color: #fff;
+      z-index: 1;
+    }
+  }
 
-.piggy-bank p {
-  margin-bottom: 5px;
-}
+  .description {
+    margin-bottom: 15px;
+  }
 
-.piggy-bank .add-amount-container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 10px;
-}
+  p {
+    margin-bottom: 10px;
+  }
 
-.piggy-bank .add-amount,
-.piggy-bank .subtract-amount {
-  flex: 1;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
+  .add-amount-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-.piggy-bank button {
-  background-color: #f3ad21;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  box-sizing: border-box;
-}
+  .add-amount {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-.piggy-bank button:hover {
-  background-color: #eea30d;
+  button {
+    background-color: #f3ad21;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken($color: #f3ad21, $amount: 5);
+    }
+  }
 }
 
 .piggy-bank.over-goal .progress-bar-fill {
-  background-color: #FFC107;
+  background-color: $over-goal-color;
 }
 
 .piggy-bank.double-over-goal .progress-bar-fill {
-  background-color: #FF5722;
+  background-color: $double-over-goal-color;
 }
 
 .piggy-bank.triple-over-goal .progress-bar-fill {
-  background-color: #F44336;
+  background-color: $triple-over-goal-color;
 }
 
 .piggy-bank.quadruple-over-goal .progress-bar-fill {
-  background-color: #9C27B0;
+  background-color: $quadruple-over-goal-color;
 }
 
 #statistics {
-  margin-top: 15px;
-  padding: 15px;
+  margin-top: 20px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  box-sizing: border-box;
-}
 
-#statistics div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  margin: 15px auto;
-}
+  div {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    width: 80%;
+    margin: 20px auto;
+  }
 
-#statistics canvas {
-  max-width: 100%;
-  max-height: 300px;
-  margin-bottom: 10px;
-}
-
-#statistics .chartjs-legend {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-#statistics .chartjs-legend li {
-  margin: 0 5px;
-}
-
-#statistics .chartjs-legend li span {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 5px;
-  border-radius: 50%;
+  canvas {
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 10px;
+  }
+  .chartjs-legend { 
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; 
+    
+    li {
+      margin: 0 5px; 
+      
+      span {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+        border-radius: 50%;
+        
+      }
+    }
+  }
 }
 
 #statistics p {
@@ -285,13 +273,11 @@ h1 {
 }
 
 #leaderboard {
-  margin-top: 15px;
-  padding: 15px;
+  margin-top: 20px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  box-sizing: border-box;
 }
 
 #leaderboard-list {
@@ -313,7 +299,6 @@ h1 {
 
 #leaderboard-list li span {
   font-weight: bold;
-  margin-right: 10px;
 }
 
 #leaderboard-list li .achievements {
@@ -324,8 +309,8 @@ h1 {
 }
 
 #leaderboard-list li .achievement {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #ccc;
   display: flex;
@@ -335,16 +320,13 @@ h1 {
   transition: transform 0.2s ease;
   position: relative;
 }
-
 #leaderboard-list li .achievement:hover {
   transform: scale(1.1);
 }
-
 #leaderboard-list li .achievement img {
   max-width: 100%;
   max-height: 100%;
 }
-
 #leaderboard-list li .achievement .achievement-progress {
   position: absolute;
   top: 0;
@@ -367,62 +349,61 @@ h1 {
 }
 
 .transactions-container {
-  margin-top: 10px;
+    margin-top: 20px;
 }
 
 .transactions-list {
-  list-style: none;
-  padding: 0;
-  overflow-y: auto;
-  max-height: 150px;
+    list-style: none;
+    padding: 0;
 }
 
 .transactions-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-  border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
 }
 
 .transactions-list li:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .transaction.add {
-  color: green;
+    color: green;
 }
 
 .transaction.subtract {
-  color: red;
+    color: red;
 }
 
 .required-amount {
-  margin-top: 10px;
-  font-weight: bold;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 .transactions-chart {
-  max-width: 100%;
-  max-height: 300px;
-  margin-bottom: 10px;
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 10px;
 }
 
 .chart-container {
-  max-width: 100%;
-  max-height: 300px;
-  overflow-y: auto;
+    max-width: 400px;
+    max-height: 400px;
+    overflow-y: auto;
 }
-
 
 @keyframes colorChange {
   0% {
-    background-color: #4CAF50;
+    background-color: $progress-bar-fill-default;
   }
   100% {
-    background-color: #9C27B0; /* Последний цвет из градиента */
+    background-color: $over-goal-color;
+    background-color: $double-over-goal-color;
+    background-color: $triple-over-goal-color;
+    background-color: $quadruple-over-goal-color;
   }
 }
-
 @keyframes widthChange {
   0% {
     width: 0%;
@@ -431,40 +412,22 @@ h1 {
     width: 100%;
   }
 }
-
 @media (max-width: 768px) {
+  #piggy-banks-container {
+    flex-direction: column;
+  }
   .piggy-bank {
-    width: 100%; /* Копилки занимают всю ширину */
+    flex: 1 0 100%;
     min-width: auto;
   }
 }
-
-
-@media (max-width: 480px) {
-  #filters {
-    flex-direction: column;
-  }
-  #filters input, #filters select {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  #add-piggy-bank, #statistics, #leaderboard{
-    padding: 10px; /* Уменьшаем padding */
-  }
-
-  h1, #add-piggy-bank h2{
-    font-size: 1.2em;
-  }
-
-}
-
 body.dark {
   background-color: #212121;
   color: #fff;
 }
 
-.theme-switch label.dark {
-  background-color: #333;
+.theme-switch label.dark #piggy-banks-container{
+  background-color: #212121;
   color: #fff;
 }
 
@@ -483,7 +446,7 @@ body.dark {
 
 #add-piggy-bank.dark,
 #filters button {
-  background-color: #444;
+  background-color:#444;
   color: #fff;
 }
 
@@ -507,84 +470,32 @@ body.dark .piggy-bank {
   background-color: #303030;
   color: #fff;
 }
-
 .add-amount-container {
   display: flex;
-  align-items: center;
+  align-items: center; 
   justify-content: center;
   margin: 0 auto;
   gap: 10px;
 }
 
-.add-amount-container input {
-  flex: 1;
+.add-amount-container input { 
+  flex: 1; 
 }
 
 .add-amount-container button {
-  margin-left: auto;
+  margin-left: auto; 
 }
-
 .actions-container {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  justify-content: space-between; 
+  margin-bottom: 10px; 
 }
 
 .actions-container button {
-  flex: 1;
-  margin: 0 5px;
+  flex: 1; 
+  margin: 0 5px; 
 }
-
 .block_button {
   display: flex;
   justify-content: space-between;
-}
-
-.loading-indicator {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 14px;
-  color: #333;
-}
-
-.progress-bar {
-  background: #f3ad21;
-  color: #fff;
-  padding: 20px 0px;
-}
-
-.error {
-  border-color: red !important;
-}
-
-.error-message {
-  color: red;
-  font-size: 12px;
-}
-
-.form-group {
-  position: relative; /* Для позиционирования error-message */
-}
-
-.form-group .error-message {
-  position: absolute;
-  bottom: -15px; /* Смещение error-message вниз */
-  left: 0;
-}
-
-.update-button {
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.update-button svg {
-  fill: #f3ad21; /* Цвет иконки обновления */
-}
-
-.update-button:hover svg {
-  fill: #eea30d; /* Цвет иконки обновления при наведении */
 }
