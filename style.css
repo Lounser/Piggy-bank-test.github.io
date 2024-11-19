@@ -503,4 +503,26 @@ body.dark .piggy-bank {
   .block_button {
     flex-direction: column;
   }
+}
+.transactions-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.update-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.update-button:hover {
+  background-color: #333;
 }/*# sourceMappingURL=style.css.map */
