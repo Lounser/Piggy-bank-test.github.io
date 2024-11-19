@@ -1,20 +1,11 @@
-$primary-color: #2196F3; // Синий
-$secondary-color: #1976D2; // Темно-синий
-$progress-bar-bg: #eee; // Светло-серый
-$progress-bar-fill-default: #4CAF50; // Зеленый
-$over-goal-color: #FFC107; // Желтый
-$double-over-goal-color: #FF5722; // Оранжевый
-$triple-over-goal-color: #F44336; // Красный
-$quadruple-over-goal-color: #9C27B0; // Фиолетовый
-$text-color: #333;
-
+@charset "UTF-8";
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f4f4f4;
-  color: $text-color;
+  color: #333;
   padding: 20px;
 }
 
@@ -30,7 +21,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.theme-switch input[type="checkbox"] {
+.theme-switch input[type=checkbox] {
   display: none;
 }
 
@@ -42,7 +33,7 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.theme-switch input[type="checkbox"]:checked + label {
+.theme-switch input[type=checkbox]:checked + label {
   background-color: #f3ad21;
 }
 
@@ -53,7 +44,7 @@ h1 {
   gap: 10px;
 }
 
-#filters input[type="text"],
+#filters input[type=text],
 #filters select {
   padding: 8px;
   border: 1px solid #ccc;
@@ -75,34 +66,30 @@ h1 {
   padding: 40px 100px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-
-  h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  button {
-    background-color: #f3ad21;
-    color: white;
-    padding: 15px 70px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: darken($color: #f3ad21, $amount: 5);
-    }
-  }
+}
+#add-piggy-bank h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+#add-piggy-bank input,
+#add-piggy-bank textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#add-piggy-bank button {
+  background-color: #f3ad21;
+  color: white;
+  padding: 15px 70px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+#add-piggy-bank button:hover {
+  background-color: #eea30d;
 }
 
 #piggy-banks-container {
@@ -118,110 +105,97 @@ h1 {
   padding: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-  }
-
-  .piggy-bank-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 15px;
-  }
-
-  .progress-bar {
-    width: 100%;
-    height: 12px;
-    background-color: $progress-bar-bg;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    position: relative;
-    overflow: hidden;
-
-    .progress-bar-fill {
-      height: 100%;
-      border-radius: 5px 0 0 5px;
-      width: 0%;
-      max-width: 100%;
-      transition: background-color 0.3s ease, width 0.5s ease;
-
-      /* Анимация для перехода цвета */
-      animation: colorChange 0.3s ease-in-out;
-      animation-fill-mode: forwards;
-
-      /* Анимация для перехода ширины */
-      animation: widthChange 0.5s ease-in-out;
-    }
-
-    .progress-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 14px;
-      color: #fff;
-      z-index: 1;
-    }
-  }
-
-  .description {
-    margin-bottom: 15px;
-  }
-
-  p {
-    margin-bottom: 10px;
-  }
-
-  .add-amount-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .add-amount {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  button {
-    background-color: #f3ad21;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: darken($color: #f3ad21, $amount: 5);
-    }
-  }
+}
+.piggy-bank:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.piggy-bank h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+.piggy-bank .piggy-bank-image {
+  width: 100%;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.piggy-bank .progress-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #eee;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+}
+.piggy-bank .progress-bar .progress-bar-fill {
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+  width: 0%;
+  max-width: 100%;
+  transition: background-color 0.3s ease, width 0.5s ease;
+  /* Анимация для перехода цвета */
+  animation: colorChange 0.3s ease-in-out;
+  animation-fill-mode: forwards;
+  /* Анимация для перехода ширины */
+  animation: widthChange 0.5s ease-in-out;
+}
+.piggy-bank .progress-bar .progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+  z-index: 1;
+}
+.piggy-bank .description {
+  margin-bottom: 15px;
+}
+.piggy-bank p {
+  margin-bottom: 10px;
+}
+.piggy-bank .add-amount-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.piggy-bank .add-amount {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.piggy-bank button {
+  background-color: #f3ad21;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.piggy-bank button:hover {
+  background-color: #eea30d;
 }
 
 .piggy-bank.over-goal .progress-bar-fill {
-  background-color: $over-goal-color;
+  background-color: #FFC107;
 }
 
 .piggy-bank.double-over-goal .progress-bar-fill {
-  background-color: $double-over-goal-color;
+  background-color: #FF5722;
 }
 
 .piggy-bank.triple-over-goal .progress-bar-fill {
-  background-color: $triple-over-goal-color;
+  background-color: #F44336;
 }
 
 .piggy-bank.quadruple-over-goal .progress-bar-fill {
-  background-color: $quadruple-over-goal-color;
+  background-color: #9C27B0;
 }
 
 #statistics {
@@ -230,38 +204,33 @@ h1 {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  div {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    width: 80%;
-    margin: 20px auto;
-  }
-
-  canvas {
-    max-width: 400px;
-    max-height: 400px;
-    margin-bottom: 10px;
-  }
-  .chartjs-legend { 
-    display: flex;
-    justify-content: center;
-    margin-top: 10px; 
-    
-    li {
-      margin: 0 5px; 
-      
-      span {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        margin-right: 5px;
-        border-radius: 50%;
-        
-      }
-    }
-  }
+}
+#statistics div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin: 20px auto;
+}
+#statistics canvas {
+  max-width: 400px;
+  max-height: 400px;
+  margin-bottom: 10px;
+}
+#statistics .chartjs-legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+#statistics .chartjs-legend li {
+  margin: 0 5px;
+}
+#statistics .chartjs-legend li span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border-radius: 50%;
 }
 
 #statistics p {
@@ -320,13 +289,16 @@ h1 {
   transition: transform 0.2s ease;
   position: relative;
 }
+
 #leaderboard-list li .achievement:hover {
   transform: scale(1.1);
 }
+
 #leaderboard-list li .achievement img {
   max-width: 100%;
   max-height: 100%;
 }
+
 #leaderboard-list li .achievement .achievement-progress {
   position: absolute;
   top: 0;
@@ -349,59 +321,59 @@ h1 {
 }
 
 .transactions-container {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .transactions-list {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .transactions-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
 }
 
 .transactions-list li:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .transaction.add {
-    color: green;
+  color: green;
 }
 
 .transaction.subtract {
-    color: red;
+  color: red;
 }
 
 .required-amount {
-    margin-top: 10px;
-    font-weight: bold;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 .transactions-chart {
-    max-width: 400px;
-    max-height: 400px;
-    margin-bottom: 10px;
+  max-width: 400px;
+  max-height: 400px;
+  margin-bottom: 10px;
 }
 
 .chart-container {
-    max-width: 400px;
-    max-height: 400px;
-    overflow-y: auto;
+  max-width: 400px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 @keyframes colorChange {
   0% {
-    background-color: $progress-bar-fill-default;
+    background-color: #4CAF50;
   }
   100% {
-    background-color: $over-goal-color;
-    background-color: $double-over-goal-color;
-    background-color: $triple-over-goal-color;
-    background-color: $quadruple-over-goal-color;
+    background-color: #FFC107;
+    background-color: #FF5722;
+    background-color: #F44336;
+    background-color: #9C27B0;
   }
 }
 @keyframes widthChange {
@@ -426,7 +398,7 @@ body.dark {
   color: #fff;
 }
 
-.theme-switch label.dark #piggy-banks-container{
+.theme-switch label.dark #piggy-banks-container {
   background-color: #212121;
   color: #fff;
 }
@@ -446,7 +418,7 @@ body.dark {
 
 #add-piggy-bank.dark,
 #filters button {
-  background-color:#444;
+  background-color: #444;
   color: #fff;
 }
 
@@ -470,32 +442,35 @@ body.dark .piggy-bank {
   background-color: #303030;
   color: #fff;
 }
+
 .add-amount-container {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   margin: 0 auto;
   gap: 10px;
 }
 
-.add-amount-container input { 
-  flex: 1; 
+.add-amount-container input {
+  flex: 1;
 }
 
 .add-amount-container button {
-  margin-left: auto; 
+  margin-left: auto;
 }
+
 .actions-container {
   display: flex;
-  justify-content: space-between; 
-  margin-bottom: 10px; 
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .actions-container button {
-  flex: 1; 
-  margin: 0 5px; 
+  flex: 1;
+  margin: 0 5px;
 }
+
 .block_button {
   display: flex;
   justify-content: space-between;
-}
+}/*# sourceMappingURL=style.css.map */
