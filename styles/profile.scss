@@ -1,0 +1,777 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+$primary-color: #2196F3; // Синий
+$secondary-color: #1976D2; // Темно-синий
+$progress-bar-bg: #eee; // Светло-серый
+$progress-bar-fill-default: #4CAF50; // Зеленый
+$over-goal-color: #FFC107; // Желтый
+$double-over-goal-color: #FF5722; // Оранжевый
+$triple-over-goal-color: #F44336; // Красный
+$quadruple-over-goal-color: #9C27B0; // Фиолетовый
+$text-color: #333;
+body {
+  font-family: "Rubik Mono One", monospace;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f4f4;
+  color: $text-color;
+  overflow-x: hidden;
+  // padding: 20px;
+}
+#navigation {
+  padding: 30px;
+  gap: 20px;
+  display: flex;
+  #welcome-message {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $text-color;
+    transition: color 0.3s ease;
+    &:hover {
+      color: $over-goal-color;
+    }
+    
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    li {
+      margin-right: 20px;
+      a {
+        text-decoration: none;
+        color: $text-color;
+        transition: color 0.3s ease;
+        &:hover {
+          color: $over-goal-color;
+        }
+      }
+    }
+  }
+}
+#welcome-message {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: $text-color;
+  transition: color 0.3s ease;
+}
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.theme-switch {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+
+}
+.theme-switch input[type="checkbox"] {
+  display: none;
+}
+
+.theme-switch label {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.theme-switch input[type="checkbox"]:checked + label {
+  background-color: #f3ad21;
+}
+
+#filters {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 100px;
+  #apply-filters{
+    padding: 14px;
+  }
+}
+
+#filters input[type="text"],
+#filters select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#filters button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f3ad21;
+  color: white;
+  cursor: pointer;
+}
+
+#add-piggy-bank {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 40px 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #f3ad21;
+    color: white;
+    padding: 15px 70px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken($color: #f3ad21, $amount: 5);
+    }
+  }
+}
+
+#piggy-banks-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.piggy-bank {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+
+  .piggy-bank-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: $progress-bar-bg;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 5px 0 0 5px;
+      width: 0%;
+      max-width: 100%;
+      transition: background-color 0.3s ease, width 0.5s ease;
+
+      /* Анимация для перехода цвета */
+      animation: colorChange 0.3s ease-in-out;
+      animation-fill-mode: forwards;
+
+      /* Анимация для перехода ширины */
+      animation: widthChange 0.5s ease-in-out;
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+      color: #fff;
+      z-index: 1;
+    }
+  }
+
+  .description {
+    margin-bottom: 15px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  .add-amount-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .add-amount {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .subtract-amount{
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    background-color: #f3ad21;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken($color: #f3ad21, $amount: 5);
+    }
+  }
+}
+
+.piggy-bank.over-goal .progress-bar-fill {
+  background-color: $over-goal-color;
+}
+
+.piggy-bank.double-over-goal .progress-bar-fill {
+  background-color: $double-over-goal-color;
+}
+
+.piggy-bank.triple-over-goal .progress-bar-fill {
+  background-color: $triple-over-goal-color;
+}
+
+.piggy-bank.quadruple-over-goal .progress-bar-fill {
+  background-color: $quadruple-over-goal-color;
+}
+
+#statistics {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  h2{
+    font-weight: bold;
+    padding: 10px;  
+    font-size: 1.25rem;
+  }
+  div {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    width: 80%;
+    margin: 20px auto;
+  }
+
+  canvas {
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 10px;
+  }
+  .chartjs-legend { 
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; 
+    
+    li {
+      margin: 0 5px; 
+
+      span {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+#statistics p {
+  margin: 5px 0;
+}
+
+#statistics span {
+  font-weight: bold;
+}
+.stats-container{
+  p{
+    color: lighten($text-color, $amount: 20);
+  }
+}
+#leaderboard {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#leaderboard-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#leaderboard-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#leaderboard-list li:last-child {
+  border-bottom: none;
+}
+
+#leaderboard-list li span {
+  font-weight: bold;
+}
+
+#leaderboard-list li .achievements {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+#leaderboard-list li .achievement {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+#leaderboard-list li .achievement:hover {
+  transform: scale(1.1);
+}
+#leaderboard-list li .achievement img {
+  max-width: 100%;
+  max-height: 100%;
+}
+#leaderboard-list li .achievement .achievement-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#leaderboard-list li .achievement:hover .achievement-progress {
+  opacity: 1;
+}
+
+.transactions-container {
+    margin-top: 20px;
+}
+
+.transactions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.transactions-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.transactions-list li:last-child {
+    border-bottom: none;
+}
+
+.transaction.add {
+    color: green;
+}
+
+.transaction.subtract {
+    color: red;
+}
+
+.required-amount {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.transactions-chart {
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 10px;
+}
+
+.chart-container {
+    max-width: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: $progress-bar-fill-default;
+  }
+  100% {
+    background-color: $over-goal-color;
+    background-color: $double-over-goal-color;
+    background-color: $triple-over-goal-color;
+    background-color: $quadruple-over-goal-color;
+  }
+}
+@keyframes widthChange {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  #piggy-banks-container {
+    flex-direction: column;
+  }
+  .piggy-bank {
+    flex: 1 0 100%;
+    min-width: auto;
+  }
+}
+body.dark {
+  background-color: #212121;
+  color: #fff;
+}
+
+.theme-switch label.dark #piggy-banks-container{
+  background-color: #212121;
+  color: #fff;
+}
+
+.theme-switch input[type=checkbox]:checked + label.dark {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+#add-piggy-bank.dark input,
+#add-piggy-bank.dark textarea,
+#filters input,
+#filters select {
+  background-color: #303030;
+  color: #fff;
+}
+
+#add-piggy-bank.dark,
+#filters button {
+  background-color:#303030;
+  color: #fff;
+}
+
+#statistics.dark {
+  background-color: #303030;
+}
+
+#leaderboard.dark {
+  background-color: #303030;
+}
+
+#leaderboard-list.dark li {
+  border-bottom: 1px solid #666;
+}
+
+#leaderboard-list.dark li .achievement {
+  background-color: #444;
+}
+
+body.dark .piggy-bank {
+  background-color: #303030;
+  color: #fff;
+}
+.add-amount-container {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.add-amount-container input { 
+  flex: 1; 
+}
+
+.add-amount-container button {
+  margin-left: auto; 
+}
+.actions-container {
+  display: flex;
+  justify-content: space-between; 
+  margin-bottom: 10px; 
+}
+
+.actions-container button {
+  flex: 1; 
+  margin: 0 5px; 
+}
+.block_button {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+@media (max-width: 590px) {
+  body {
+    padding: 10px;
+  }
+  .add-amount-container button{
+    width: 100%;
+  }
+  .add-amount{
+    width: 95%;
+  }
+  .subtract-amount{
+    width: 95%;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+
+  #add-piggy-bank {
+    padding: 20px;
+  }
+
+  #add-piggy-bank input,
+  #add-piggy-bank textarea {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  .piggy-bank {
+    padding: 20px;
+  }
+
+  .add-amount-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .actions-container button {
+    margin: 5px 5px;
+    gap: 10px;
+  }
+  .block_button{
+    gap: 10px;
+  }
+  #filters {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .block_button {
+    flex-direction: column;
+  }
+}
+.transactions-container{
+    // scrollbar-height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.update-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  background: $over-goal-color;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background: darken($over-goal-color, $amount: 10);
+  }
+  
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.875rem;
+  margin-top: max(40px, env(safe-area-inset-top));
+  bottom: 0;
+  width: 100%;
+  background-color: #212121;
+  color: #fff;
+  padding: 50px 0px;
+  text-align: center;
+  border-top: 1px solid #333;
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $secondary-color;
+    }
+ }
+}
+
+input,
+textarea {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+  &:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-color: #aaa;
+    background-color: #f3f3f3;
+    color: #333;
+  }
+}
+
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+body.light {
+  animation: light-theme 0.3s ease-in-out forwards;
+}
+
+body.dark {
+  animation: dark-theme 0.3s ease-in-out forwards;
+}
+
+@keyframes light-theme {
+  0% {
+    background-color: #212121;
+    color: #fff;
+  }
+  100% {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+}
+@keyframes dark-theme {
+  0% {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  100% {
+    background-color: #212121;
+    color: #fff;
+  }
+}
+body.dark #navigation a {
+  color: #fff;
+}
+#welcome-message.dark{
+  color: #fff;
+}
+.piggy-bank {
+  .progress-bar {
+    height: 10px;
+    background-color: $progress-bar-bg;
+    border-radius: 10px;
+    overflow: hidden;
+    .progress-bar-fill {
+      height: 100%;
+      background-color: $progress-bar-fill-default;
+      border-radius: 10px;
+      transition: width 0.2s ease;
+      &.filled {
+        background-color: $progress-bar-fill-default;
+      }
+      &.over-goal {
+        background-color: $over-goal-color;
+      }
+      &.double-over-goal {
+        background-color: $double-over-goal-color;
+      }
+      &.triple-over-goal {
+        background-color: $triple-over-goal-color;
+      }
+      &.quadruple-over-goal {
+        background-color: $quadruple-over-goal-color;
+      }
+    }
+  }
+}
+.piggy-bank {
+  .progress-bar-fill {
+    animation: widthChange 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes widthChange {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+
+
+@keyframes removePiggyBank {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) rotate(90deg);
+  }
+}
+
+
+.achievement{
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+  justify-content: center;
+  width: 100%;
+}

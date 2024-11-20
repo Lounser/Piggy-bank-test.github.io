@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piggy bank - Профиль</title>
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script defer src="scripts/profile.js"></script>
+    <base href="images/">
+</head>
+<body>
+    <header>
+        <nav id="navigation">
+            <ul>
+                <li><a href="/my-piggy-bank/profile.html"><img src="https://img.icons8.com/?size=100&id=R2rV4MQlV0ot&format=png&color=000000" alt="Профиль" width="24" height="24">Профиль</a></li>
+                <li><a href="/my-piggy-bank/home.html"><img src="https://img.icons8.com/?size=100&id=jDwpGuHnarDq&format=png&color=000000" alt="Главная" width="24" height="24">Главная</a></li>
+                <li><a href="/settings"><img src="https://img.icons8.com/?size=100&id=N1xaXJg6g2Eq&format=png&color=000000" alt="Настройки" width="24" height="24">Настройки</a></li>
+            </ul>
+        </nav>
+        <h1>PIGGY BANK</h1>
+        <h2 id="welcome-message">Мы сохраним ваши деньги</h2>
+        <div class="theme-switch">
+            <input type="checkbox" id="theme-switch-checkbox">
+            <label for="theme-switch-checkbox">Темная тема</label>
+        </div>
+        
+    </header>
+
+    <main>
+        <section id="filters">
+            <input type="text" id="name-filter" placeholder="Поиск по названию...">
+            <select id="goal-filter">
+                <option value="">Все цели</option>
+                <option value="less">Менее</option>
+                <option value="more">Больше</option>
+            </select>
+            <button id="apply-filters">Применить фильтры</button>
+        </section>
+
+        <section id="add-piggy-bank">
+            <h2>Создать/Редактировать копилку</h2>
+            <input type="hidden" id="piggy-bank-id">
+            <div class="form-group">
+                <label for="piggy-bank-name">Название копилки:</label>
+                <input type="text" id="piggy-bank-name" placeholder="Название копилки" required>
+                <span class="error-message" style="display: none;">Поле обязательно для заполнения</span>
+            </div>
+            <div class="form-group">
+                <label for="piggy-bank-goal">Цель (₽):</label>
+                <input type="number" id="piggy-bank-goal" placeholder="Цель" min="1" required>
+                <span class="error-message" style="display: none;">Должно быть числом больше 0</span>
+            </div>
+            <div class="form-group">
+                <label for="piggy-bank-start">Начальная сумма (₽):</label>
+                <input type="number" id="piggy-bank-start" placeholder="Начальная сумма" min="0" required>
+                <span class="error-message" style="display: none;">Должно быть числом больше или равно 0</span>
+            </div>
+            <div class="form-group">
+                <label for="piggy-bank-goal-date">Дата цели:</label>
+                <input type="date" id="piggy-bank-goal-date" placeholder="Дата цели">
+            </div>
+            <div class="form-group">
+                <label for="piggy-bank-image">Изображение:</label>
+                <input type="file" id="piggy-bank-image" accept="image/*">
+            </div>
+            <img id="piggy-bank-image-preview" src="#" alt="Предпросмотр" style="display: none; max-width: 200px; margin-bottom: 10px;">
+            <div class="form-group">
+                <label for="piggy-bank-description">Описание:</label>
+                <textarea id="piggy-bank-description" placeholder="Описание"></textarea>
+            </div>
+            <div class="block_button">
+                <button id="save-piggy-bank">Сохранить</button>
+                <button id="cancel-piggy-bank" style="display: none;">Отмена</button>
+            </div>
+        </section>
+
+        <section id="piggy-banks-container">
+            <!-- Здесь будут отображаться копилки -->
+        </section>
+
+        <section id="statistics">
+            <h2>Статистика</h2>
+            <div class="stats-container">
+                <p>Общая сумма накоплений: <span id="total-amount">0</span>₽</p>
+                <p>Средний размер пополнений: <span id="average-amount">0</span>₽</p>
+                <p>Количество копилок: <span id="piggy-bank-count">0</span>₽</p>
+                <p>Количество достигнутых целей: <span id="goal-reached-count">0</span>₽</p>
+                <p>Среднее количество пополнений в день: <span id="avg-daily-transactions">0</span></p>
+            </div>
+            <div class="charts-container">
+                <!-- <canvas id="progressChart"></canvas>   -->
+                <canvas id="distributionChart"></canvas> 
+                <button id="update-charts" class="update-button">
+                    <p class="updater-text">Обновить графики</p>
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 5.83L15.17 9l-1.41 1.41L12 8.24 8.83 12l-1.41-1.41L12 5.83zm5.33 12.33l-1.41 1.41L12 17.76 8.83 21l-1.41-1.41L12 17.76 15.17 21l1.41-1.41z"/></svg> -->
+                    <span class="loading-indicator" style="display: none;">Обновление...</span> 
+                </button> 
+            </div>
+        </section>
+
+        <section id="leaderboard">
+            <h2>Таблица лидеров</h2>
+            <ol id="leaderboard-list">
+                <!-- Лидеры будут отображаться здесь -->
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My Piggy Bank. Все права защищены.</p>
+        <p>Сделано в Волжском Политихеническом Техникуме.</p>
+        <p>Все права защищены.</p>
+        
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
+</html>
+
